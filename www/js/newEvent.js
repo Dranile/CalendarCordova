@@ -28,43 +28,57 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-        document.querySelector("input#send").addEventListener("click", this.insertDate);
-        document.querySelector("input#cancel").addEventListener("click", function(){
-            document.location.href="index.html";
-        });
-        document.querySelector("input#localisation").addEventListener("click", this.localize);
-        document.querySelector("input#photo").addEventListener("click", this.takePicture);
+        document.querySelector("#send").addEventListener("click", this.insertDate);
+        document.querySelector("#js-localisation").addEventListener("click", this.localize);
+        document.querySelector("#js-photo").addEventListener("click", this.takePicture);
+
+        $('.datepicker').pickadate({
+            selectMonths: true, // Creates a dropdown to control month
+            selectYears: 15, // Creates a dropdown of 15 years to control year,
+            today: 'Today',
+            clear: 'Clear',
+            close: 'Ok',
+            closeOnSelect: false // Close upon selecting a date,
+          });
+
+
+        $('.timepicker').pickatime({
+            default: 'now', // Set default time: 'now', '1:30AM', '16:30'
+            fromnow: 0,       // set default time to * milliseconds from now (using with default = 'now')
+            twelvehour: false, // Use AM/PM or 24-hour format
+            donetext: 'OK', // text for done-button
+            cleartext: 'Clear', // text for clear-button
+            canceltext: 'Cancel', // Text for cancel-button
+            autoclose: false, // automatic close timepicker
+            ampmclickable: true, // make AM PM clickable
+            aftershow: function(){} //Function for after opening timepicker
+          });
+
+        $('select').material_select();
     },
 
     insertDate: function(){
         // Récupération des différentes valeurs
         var date = document.querySelector("input#date").value;
         var heure = document.querySelector("input#heure").value;
-        var min = document.querySelector("input#minute").value;
         var titre = document.querySelector("input#titre").value;
         var descr = document.querySelector("textarea#description").value;
         var selectElement = document.querySelector("select#select");
         var type = selectElement.options[selectElement.selectedIndex].value;
-        var localisation = document.querySelector("input#textLocal").value;
+        var localisation = document.querySelector("#js-textLocal").value;
         var photo = document.querySelector("img");
-        heure = parseInt(heure);
-        min = parseInt(min);
 
 
-        if(date == null || titre == "" || descr == ""){
+
+        if(date == null || heure == null || titre == "" || descr == ""){
             alert("Un champ n'a pas été remplis");
             return;
         }
-        if(heure > 23 || heure < 0 || min > 59 || min<0){
-            alert("Le champ heure ou minute n'est pas bon");
-            return;
-        }
-        date = dateFormat(date, heure, min);
+        date = date + ' ' + heure;
         var dateObject = new Date(date);
-        console.log(dateObject);
-
+        date = dateFormat(dateObject);
         var insertObject = {
-            "date": date,
+            "date": date.toString(),
             "titre": titre,
             "description": descr,
             "eventType": type
@@ -89,15 +103,29 @@ var app = {
         });
     
 
-        function dateFormat(date, heure, min){
-            if(heure < 10){
-                heure = '0' + heure;
+        function dateFormat(date){
+            var year = date.getFullYear();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hour = date.getHours();
+            var min = date.getMinutes();
+
+            month += 1;
+            console.log(month);
+            if(month < 10){
+                month = '0' + month;
+            }
+            if(day < 10){
+                day = '0' + day;
+            }
+            if(hour < 10){
+                hour = '0' + hour;
             }
             if(min < 10){
-                min = '0' + min
+                min = '0' + min;
             }
-            var date = date + " " + heure + ":" + min;
-            return date;
+            var dateReturn = year + '-' + month + '-' + day + ' ' + hour + ':' + min;
+            return dateReturn;
         }
 
         function createNotification(id, title, description, date){
@@ -121,7 +149,7 @@ var app = {
         console.log("test");
         function onSuccess(position){
             console.log(position.coords.latitude + " : " + position.coords.longitude);
-            document.querySelector("input#textLocal").value = position.coords.latitude + ":" + position.coords.longitude;
+            document.querySelector("#js-textLocal").value = position.coords.latitude + ":" + position.coords.longitude;
         }
 
         function onError(error){
@@ -139,7 +167,7 @@ var app = {
             var image = document.createElement("img");
             image.src = imageURI;
             p.appendChild(image);
-            document.querySelector("div.content form").appendChild(p);
+            document.querySelector(".content").appendChild(p);
         }
 
         function onFail(message) {

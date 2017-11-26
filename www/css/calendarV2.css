@@ -1,6 +1,25 @@
-#nav-mobile{
-    margin-left:5px;
+.nav-wrapper .back-button{
+	display: flex;
+	font-size: 1.5em;
 }
-#nav-mobile a{
-    font-size:1.8em;
+
+.nav-wrapper .back-button i{
+	display: inline-block;
+}
+
+.location-form{
+	display: flex;
+}
+
+.collection-item > a {
+	display: flex;
+	justify-content: space-between;
+}
+
+.collection-item > a .title{
+	color:rgb(0,0,0);
+}
+
+.collection-item > a p{
+	color:#9e9e9e;
 }

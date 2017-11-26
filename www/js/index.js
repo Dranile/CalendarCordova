@@ -22,7 +22,7 @@ var app = {
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
-        document.querySelector("input#search").addEventListener("click",this.onSearch);
+        document.querySelector("#js-search").addEventListener("click",this.onSearch);
     },
 
     // deviceready Event Handler
@@ -30,7 +30,7 @@ var app = {
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
-
+        $('select').material_select();
         cordova.plugins.notification.local.on('click', function(notification){
             document.location.href='event.html?id=' + notification.id;
         });
@@ -41,7 +41,7 @@ var app = {
             var len = results.rows.length;
             console.log(len);
             if(len > 0){
-                var el = document.querySelector(".list");
+                var el = document.querySelector(".collection");
                 for (i = 0; i < len; i++){
                     createEvent(el, results.rows.item(i));
                 }
@@ -50,26 +50,42 @@ var app = {
 
         function createEvent(element, item){
             console.log(item);
-            var a = document.createElement("a");
-            a.href= "event.html?id=" + item.id;
-            var div = document.createElement("div");
-            div.className = "event";
-            var leftDiv = document.createElement("div");
-            var titre = document.createElement("span");
-            titre.className = "titre";
-            titre.innerHTML = item.titre;
-            var type = document.createElement("span");
-            type.className = "typeEvent";
-            type.innerHTML = item.eventType;
-            var date = document.createElement("span");
-            date.className = "dateEvent";
-            date.innerHTML = item.date;
-            leftDiv.appendChild(titre);
-            leftDiv.appendChild(type);
-            div.appendChild(leftDiv);
-            div.appendChild(date);
-            a.appendChild(div);
-            element.appendChild(a);
+            var collectionItem = $('<ul></ul>')
+                .addClass('collection-item')
+                .append($('<a></a>')
+                    .attr('href', 'event.html?id=' + item.id)
+                    .append($('<div></div>')
+                        .append($('<span></span>')
+                            .addClass('title')
+                            .text(item.titre))
+                        .append($('<p></p>')
+                            .text(item.date)))
+                    .append($('<span></span>')
+                        .addClass('secondary-content')
+                        .addClass('valign-wrapper')
+                        .text(item.eventType)));
+
+            $(element).append(collectionItem);
+            // var a = document.createElement("a");
+            // a.href= "event.html?id=" + item.id;
+            // var div = document.createElement("div");
+            // div.className = "event";
+            // var leftDiv = document.createElement("div");
+            // var titre = document.createElement("span");
+            // titre.className = "titre";
+            // titre.innerHTML = item.titre;
+            // var type = document.createElement("span");
+            // type.className = "typeEvent";
+            // type.innerHTML = item.eventType;
+            // var date = document.createElement("span");
+            // date.className = "dateEvent";
+            // date.innerHTML = item.date;
+            // leftDiv.appendChild(titre);
+            // leftDiv.appendChild(type);
+            // div.appendChild(leftDiv);
+            // div.appendChild(date);
+            // a.appendChild(div);
+            // element.appendChild(a);
         }
 
     },
@@ -93,7 +109,7 @@ var app = {
             var len = results.rows.length;
             console.log(len);
             if(len > 0){
-                var el = document.querySelector(".list");
+                var el = document.querySelector(".collection");
                 el.innerHTML = "";
                 for (i = 0; i < len; i++){
                     createEvent(el, results.rows.item(i));

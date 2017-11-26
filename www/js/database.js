@@ -89,6 +89,8 @@ class Database{
 
 		sql = sql.slice(0,-4);
 
+		sql += ' ORDER BY date';
+
 		console.log(sql);
 
 		this.db.transaction(populateDB, null);
@@ -114,7 +116,7 @@ class Database{
 
         // Populate the database
         function populateDB(tx) {
-        	var sql = 'SELECT * FROM CALENDAR WHERE date > strftime(\'%Y-%m-%d %H:%M:%S\', datetime(\'now\',\'localtime\'))'
+        	var sql = 'SELECT * FROM CALENDAR WHERE date > strftime(\'%Y-%m-%d %H:%M:%S\', datetime(\'now\',\'localtime\')) ORDER BY date'
         	console.log(sql)
             tx.executeSql(sql, [], callback, errorCB);
         }
