@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="tex/css" href="css/normalize.css">
+    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+    <title></title>
+</head>
+<body>
+    <div class="app">
+        <div class="content">
+            <h2 class="titre"></h2>
+            <div class="infoComplementaire">
+                <span class="date"></span>
+                <span class="eventType"></span>
+            </div>
+            <div id="sportActivity"></div>
+            <p class="description"></p>
+            <div class="photoContainer">
+                <div class="photo"></div>
+            </div>
+        </div>
+        <a href="newEvent.html" class="button" id="addEvent">+</a>
+    </div>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
+    <script type="text/javascript" src="js/event.js"></script>
+</body>
+</html>

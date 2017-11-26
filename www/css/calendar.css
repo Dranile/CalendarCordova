@@ -1,0 +1,138 @@
+body{
+	margin:0;
+}
+
+.content {
+	margin: auto 5px;
+}
+
+/**
+ * NewEvent
+ */
+
+.content.newEvent{
+	display: flex;
+	justify-content: center;
+}
+
+label{
+    display: block;
+}
+
+input,textarea{
+	border: 1px solid black;
+}
+
+textarea{
+    resize: none;
+}
+
+a{
+	color:black;
+	text-decoration: none;
+}
+
+/**
+ * Boutton d'ajout d'event
+ */
+
+a.button{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	color:white;
+	font-weight: bold;
+	font-size: 45px;
+	border-radius: 90px;
+	background-color:#34E93F;
+	width: 50px;
+	height: 50px;
+	text-decoration: none; 
+}
+
+a#addEvent{
+	position: fixed;
+	bottom: 25px;
+	right: 25px;
+}
+
+/**
+ * Header
+ */
+
+div.header {
+	position: fixed;
+	z-index:1;
+	background-color: #5EBFDA; 
+	color:white;
+	width: 100%;
+	padding-bottom: 10px;
+}
+
+div.header h2{
+	text-align: center;
+}
+/*
+Liste des evenements
+ */
+
+div.list {
+	transform: translateY(105px);
+}
+
+div.list div.event{
+	display: flex;
+	justify-content: space-between;
+	border-top:1px solid black;
+	border-bottom:1px solid black;
+	padding: 0px 5px;
+	min-height:75px;
+}
+div.list div.event>div{
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+div.list div.event span.titre{
+	font-size: 1.3em;
+	font-weight: bold;
+}
+div.list div.event span.typeEvent{
+	font-size: 0.9em;
+	color:#505050;
+}
+
+div.list div.event>span.dateEvent{
+	transform: translateY(40%);
+}
+
+/**
+ *  Visualisation d'un évênement
+ */
+
+h2.titre{
+	text-align: center;
+}
+
+div.infoComplementaire{
+	display: flex;
+	justify-content: space-between;
+}
+
+div.photo{
+	display: flex;
+	justify-content: center;
+}
+
+div.sportActivity{
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+div.sportElement{
+	margin-top: 10px;
+	padding:5px;
+	border:1px solid black;
+}

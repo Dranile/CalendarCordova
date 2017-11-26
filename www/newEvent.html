@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!--
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="tex/css" href="css/normalize.css">
+<!-- 
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="css/calendarV2.css">
+     -->
+
+    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+    <title>Calendar</title>
+</head>
+<body>
+    <div class="app">
+        <div class="content newEvent">
+            <!-- <div class="navbar-fixed">
+                <nav>
+                    <div class="nav-wrapper">
+                        <span class="center">Nouvel évênement</span>
+                        <ul id="nav-mobile" class="left">
+                            <li><a href="index.html" class="backButton">&larr;</a></li>
+                        </ul>
+                        <ul id="nav-mobile" class="right">
+                            <li><a href="index.html">Annuler</a></li>
+                            <li><a href="#">Valider</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div> -->
+            <form>
+                <h2>Nouvel evenement</h2>
+                <p><label for="date">Date :</label><input type="date" id="date"></p>
+                <p><label for="heure">Heures :</label><input type="number" name="heure" id="heure" min="0" max="23"></p>
+                <p><label for="minute">Minutes :</label><input type="number" name="minute" id="minute" min="0" max="59"></p>
+                <p>
+                    <select id="select">
+                        <option value="sport">Sport</option>
+                        <option value="anniversaire">Anniversaire</option>
+                        <option value="rdv">RDV</option>
+                        <option value="autre">Autre</option>
+                    </select>
+                </p>
+                <p><label for="titre">Titre :</label><input type="text" id="titre"></p>
+                <p><label for="description">Description :</label><textarea name="description" id="description" cols="30" rows="10"></textarea></p>
+                <p>
+                    <input type="button" name="localisation" id="localisation" value="Localisez moi">
+                    <input type="text" name="textLocalisation" id="textLocal"/>
+                </p>
+                <p>
+                    <input type="button" name="photo" id="photo" value="Ajouter une photo">
+                </p>
+                <input type="button" name="envoyer" value="Envoyer" id="send"/>
+                <input type="button" name="cancel" value="Annuler" id="cancel"/>
+            </form>
+        </div>
+    </div>
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script> -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/database.js"></script>
+    <script type="text/javascript" src="js/newEvent.js"></script>
+</body>
+</html>
