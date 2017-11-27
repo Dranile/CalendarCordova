@@ -35,3 +35,7 @@ var app = {
 };
 
 app.initialize();
+var chrono;
+var trajectLength = 0;
+var currentPos;
+var previousPos;
