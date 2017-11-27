@@ -87,9 +87,7 @@ class Database{
 			}
 		}
 
-		sql = sql.slice(0,-4);
-
-		sql += ' ORDER BY date';
+		sql += 'date > strftime(\'%Y-%m-%d %H:%M:%S\', datetime(\'now\',\'localtime\')) ORDER BY date';
 
 		console.log(sql);
 
