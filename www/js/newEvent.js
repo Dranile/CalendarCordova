@@ -153,6 +153,7 @@ var app = {
         }
 
         function onError(error){
+            console.log(error);
             alert('Veuillez activer la localisation');
         }
     },

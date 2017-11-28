@@ -29,12 +29,30 @@
             </nav>
         </div>
         <div class="container">
-
+            <div class="section center-align">
+                <a class="waves-effect waves-light btn" id="js-start">start</a>
+                <a class="waves-effect waves-light btn" id="js-stop">stop</a>
+                <a class="waves-effect waves-light btn" id="js-reset">reset</a>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <h5 class="left-align">Chronomètre : </h5>
+                <h4 class="center-align"><span id="js-chrono">00:00:00</span></h4>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <h5 class="left-align">Distance parcourue : </h5>
+                <h4 class="center-align"><span id="js-meter">0</span> m</h4>
+            </div>
+            
         </div>
     </div>
     <script type="text/javascript" src="js/jquery.min.js"></script>
     <script type="text/javascript" src="js/materialize.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/sportActivity.js"></script>
+    <script type="text/javascript" src="js/dms.js"></script>
+    <script type="text/javascript" src="js/latlon-spherical.js"></script>
+    <script type="text/javascript" src="js/chrono.js"></script>
+    <script type="text/javascript" src="js/launchActivity.js"></script>
 </body>
 </html>
