@@ -24,6 +24,7 @@ var app = {
     nbMeter: 0,
     latitude: null,
     longitude: null,
+    isStarted: false,
     // Application Constructor
     initialize: function() {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
@@ -48,12 +49,14 @@ var app = {
     },
 
     start: function(){
-        console.log('enable');
-        app.chrono.play();
-        var plugin = cordova.plugins.backgroundMode;
-        plugin.setEnabled(true);
-
-        watchId = navigator.geolocation.watchPosition(app.geolocationSuccess, app.geolocationError, {maximumAge: 3000, enableHighAccuracy: true });
+        if(!app.isStarted){
+            console.log('enable');
+            app.chrono.play();
+            var plugin = cordova.plugins.backgroundMode;
+            plugin.setEnabled(true);
+            app.setGeolocalisation();
+            app.isStarted = true;
+        }
     },
 
     stop: function(){
@@ -76,13 +79,14 @@ var app = {
     pauseAndResetHandler: function(){
         var plugin = cordova.plugins.backgroundMode;
         plugin.setEnabled(false);
-        navigator.geolocation.clearWatch(watchId);
+        navigator.geolocation.clearWatch(app.watchId);
+        app.isStarted = false;
     },
 
     startBackground: function() {
         console.log('startBackgroundService');
         app.chrono.pause();
-        navigator.geolocation.clearWatch(watchId);
+        //navigator.geolocation.clearWatch(app.watchId);
         app.intervalId = setInterval(function () {
             app.chrono.tick();
             // Ne marche pas :(
@@ -95,11 +99,19 @@ var app = {
         clearInterval(app.intervalId);
         app.chrono.updateShow();
         app.chrono.play();
-        watchId = navigator.geolocation.watchPosition(app.geolocationSuccess, app.geolocationError, {maximumAge: 3000, enableHighAccuracy: true });
+        /*
+        var isActivated = app.setGeolocalisation();
+        if(!isActivated){
+            $('#js-section-chrono').hide();
+        }
+        else{
+            $('#js-section-chrono').show();
+        }
+        */
     },
 
     geolocationSuccess: function(position){
-
+        console.log('test');
         var updatedLatitude = position.coords.latitude;
         var updatedLongitude = position.coords.longitude;
         if (updatedLatitude != app.latitude && updatedLongitude != app.longitude) {
@@ -117,6 +129,34 @@ var app = {
 
     geolocationError: function(err){
         console.log(err)
+    },
+
+    setGeolocalisation: function(){
+        cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+            console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+            if(enabled){
+                app.watchId = navigator.geolocation.watchPosition(app.geolocationSuccess, app.geolocationError, {maximumAge: 3000, enableHighAccuracy: true });
+            }
+            else{
+                cordova.plugins.locationAccuracy.request(onRequestSuccess, onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            }
+        }, function(error){
+            console.error("The following error occurred: "+error);
+        });
+
+        function onRequestSuccess(success){
+            console.log("Successfully requested accuracy: "+success.message);
+            app.watchId = navigator.geolocation.watchPosition(app.geolocationSuccess, app.geolocationError, {maximumAge: 3000, enableHighAccuracy: true });
+        }
+
+        function onRequestFailure(error){
+            console.error("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+            if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+                if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+                    cordova.plugins.diagnostic.switchToLocationSettings();
+                }
+            }
+        }
     },
 
     calculDistance: function(oldLat, oldLong, newLat, newLong){

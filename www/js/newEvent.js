@@ -145,8 +145,32 @@ var app = {
 
     localize: function(){
         console.log("on recupère la localisation");
-        navigator.geolocation.getCurrentPosition(onSuccess,onError, {timeout: 10000, enableHighAccuracy: true});
-        console.log("test");
+        cordova.plugins.diagnostic.isGpsLocationEnabled(function(enabled){
+            console.log("GPS location is " + (enabled ? "enabled" : "disabled"));
+            if(enabled){
+                navigator.geolocation.getCurrentPosition(onSuccess,onError, {timeout: 10000, enableHighAccuracy: true});
+            }
+            else{
+                cordova.plugins.locationAccuracy.request(onRequestSuccess, onRequestFailure, cordova.plugins.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY);
+            }
+        }, function(error){
+            console.error("The following error occurred: "+error);
+        });
+
+        function onRequestSuccess(success){
+            console.log("Successfully requested accuracy: "+success.message);
+            navigator.geolocation.getCurrentPosition(onSuccess,onError, {timeout: 10000, enableHighAccuracy: true});
+        }
+
+        function onRequestFailure(error){
+            console.error("Accuracy request failed: error code="+error.code+"; error message="+error.message);
+            if(error.code !== cordova.plugins.locationAccuracy.ERROR_USER_DISAGREED){
+                if(window.confirm("Failed to automatically set Location Mode to 'High Accuracy'. Would you like to switch to the Location Settings page and do this manually?")){
+                    cordova.plugins.diagnostic.switchToLocationSettings();
+                }
+            }
+        }
+
         function onSuccess(position){
             console.log(position.coords.latitude + " : " + position.coords.longitude);
             document.querySelector("#js-textLocal").value = position.coords.latitude + ":" + position.coords.longitude;
@@ -154,7 +178,7 @@ var app = {
 
         function onError(error){
             console.log(error);
-            alert('Veuillez activer la localisation');
+            alert('Il y a eu une erreur, veuillez réessayer...');
         }
     },
 
