@@ -11,6 +11,7 @@
   "license": "Apache-2.0",
   "dependencies": {
     "cordova-android": "^6.3.0",
+    "cordova-androidwear": "^1.0.0",
     "cordova-browser": "^5.0.0",
     "cordova-plugin-app-event": "^1.2.1",
     "cordova-plugin-background-mode": "^0.7.2",
@@ -36,7 +37,8 @@
       "de.appplant.cordova.plugin.local-notification": {},
       "cordova-plugin-background-mode": {},
       "cordova.plugins.diagnostic": {},
-      "cordova-plugin-request-location-accuracy": {}
+      "cordova-plugin-request-location-accuracy": {},
+      "cordova-androidwear": {}
     },
     "platforms": [
       "android",
