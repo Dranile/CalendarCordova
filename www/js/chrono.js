@@ -65,6 +65,10 @@ class chrono{
 		}
 	}
 
+	getTimeInSecond(){
+		return this.sec + (this.min * 60) + (this.hour * 3600);
+	}
+
 	/**
 	 * [toString retourne la chaine de caractere du chrono]
 	 * @return {string} [chaine de caractère représentant le chrono]

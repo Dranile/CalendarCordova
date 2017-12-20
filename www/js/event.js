@@ -30,12 +30,9 @@ var app = {
     // 'pause', 'resume', etc.
     onDeviceReady: function() {
         var id = getGetParams();
-        var obj = {
-            'id': id
-        };
 
         var db = new Database();
-        db.selectData(obj,function(tx, results){
+        db.selectDataWithId(id,function(tx, results){
             // Gérer les données à afficher
             var obj = results.rows.item(0);
             console.log(obj);

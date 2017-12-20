@@ -75,6 +75,30 @@ class Database{
 	 * @param  {Function} callback [description]
 	 * @return {[type]}            [description]
 	 */
+	selectDataWithId(id, callback){
+		// il faut réaliser certaines choses avant de lancer la requête
+		var sql = 'SELECT * FROM CALENDAR WHERE id=' + id;
+		console.log(sql);
+
+		this.db.transaction(populateDB, null);
+
+        function populateDB(tx) {
+        	//Changer la requête
+            tx.executeSql(sql, [], callback, errorCB);
+        }
+
+        // Transaction error callback
+        function errorCB(tx, err) {
+            alert("Error processing SQL: "+err);
+        }
+	}
+
+	/**
+	 * permet d'avoir l'élément avec l'id sélectionné ou les éléments suivant un champ de recherche 
+	 * @param  {[type]}   object   [description]
+	 * @param  {Function} callback [description]
+	 * @return {[type]}            [description]
+	 */
 	selectData(object, callback){
 		// il faut réaliser certaines choses avant de lancer la requête
 		var sql = 'SELECT * FROM CALENDAR WHERE ';

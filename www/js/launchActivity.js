@@ -69,6 +69,7 @@ var app = {
         console.log('reset');
         app.chrono.reset();
         $('#js-meter').text('0');
+        $('#js-speed').text('0');
         app.nbMeter = 0;
         app.latitude = null,
         app.longitude = null,
@@ -114,6 +115,7 @@ var app = {
         console.log('test');
         var updatedLatitude = position.coords.latitude;
         var updatedLongitude = position.coords.longitude;
+        var speed = position.coords.speed;
         if (updatedLatitude != app.latitude && updatedLongitude != app.longitude) {
             if(app.latitude !== null && app.longitude !== null){
                 var result = app.calculDistance(app.latitude, app.longitude, updatedLatitude, updatedLongitude);
@@ -123,8 +125,10 @@ var app = {
             app.latitude = updatedLatitude;
             app.longitude = updatedLongitude;
 
+            console.log(position.coords);
             $('#js-meter').text(Math.round(app.nbMeter));
-        }
+            $('#js-speed').text(app.calculVitesse(app.chrono.getTimeInSecond(), Math.round(app.nbMeter)))
+        }   
     },
 
     geolocationError: function(err){
@@ -163,6 +167,10 @@ var app = {
         oldPos = new LatLon(oldLat, oldLong);
         newPos = new LatLon(newLat, newLong);
         return oldPos.distanceTo(newPos);
+    },
+
+    calculVitesse: function(time, distance){
+        return Math.round(distance/time);
     }
 
 };
