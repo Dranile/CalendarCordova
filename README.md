@@ -1,9 +1,11 @@
-#TP Cordova Hmin303
+# TP Cordova Hmin303
 
 ## Auteurs
+
 Carmona Anthony & Pyz Maxime
 
 ## Installation
+
 ```bash
 cordova install
 cordova run android
