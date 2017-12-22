@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="tex/css" href="css/normalize.css">
+
+    <!-- Materialize -->
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont/material-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="css/calendarV2.css">
+    
+    <!-- <link rel="stylesheet" type="text/css" href="css/calendar.css"> -->
+    <title></title>
+</head>
+<body>
+    <div class="app">
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo center" id="js-titre">Lorem Ipsum</a>
+                    <ul id="nav-mobile" class="left">
+                        <li><a href="sportActivity.html"><i class="material-icons">arrow_back</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container">
+            <div class="section center-align">
+                <a class="waves-effect waves-light btn" id="js-start">start</a>
+                <a class="waves-effect waves-light btn" id="js-stop">stop</a>
+                <a class="waves-effect waves-light btn" id="js-reset">reset</a>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+                <h5 class="left-align">Chronomètre : </h5>
+                <h4 class="center-align"><span id="js-chrono">00:00:00</span></h4>
+            </div>
+            <div class="divider"></div>
+            <div class="section" id="js-section-chrono">
+                <h5 class="left-align">Distance parcourue : </h5>
+                <h4 class="center-align"><span id="js-meter">0</span> m</h4>
+            </div>
+            <div class="divider"></div>
+            <div class="section" id="js-section-speed">
+                <h5 class="left-align">Vitesse : </h5>
+                <h4 class="center-align"><span id="js-speed">0</span> m/s</h4>
+            </div>
+            
+        </div>
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/dms.js"></script>
+    <script type="text/javascript" src="js/latlon-spherical.js"></script>
+    <script type="text/javascript" src="js/chrono.js"></script>
+    <script type="text/javascript" src="js/launchActivity.js"></script>
+</body>
+</html>

@@ -7,25 +7,44 @@
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="tex/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/calendar.css">
+    <link rel="stylesheet" type="text/css" href="fonts/iconfont/material-icons.css">
+    <link rel="stylesheet" type="text/css" href="css/materialize.css">
+    <link rel="stylesheet" type="text/css" href="css/calendarV2.css">
+
+    <!-- <link rel="stylesheet" type="text/css" href="css/calendar.css"> -->
     <title></title>
 </head>
 <body>
     <div class="app">
-        <div class="content">
-            <h2 class="titre"></h2>
-            <div class="infoComplementaire">
-                <span class="date"></span>
-                <span class="eventType"></span>
+        <div class="navbar-fixed">
+            <nav>
+                <div class="nav-wrapper">
+                    <a href="#" class="brand-logo center" id="js-titre">Logo</a>
+                    <ul id="nav-mobile" class="left">
+                        <li><a href="index.html"><i class="material-icons">arrow_back</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <div class="container section"> 
+            <div id="js-infoComplementaire" class="row">
+                <div class="col s6 left-align"><span id="js-date"></span></div>
+                <div class="col s6 right-align"><span id="js-eventType"></span></div>
             </div>
-            <div id="sportActivity"></div>
-            <p class="description"></p>
-            <div class="photoContainer">
-                <div class="photo"></div>
+            <a href="sportActivity.html" class="waves-effect waves-light btn hide" id="js-sportActivity">Commencer une activité sportive</a>
+            <div id="js-description"></div>
+            <div id="js-photoContainer">
+                <div id="js-photo"></div>
             </div>
         </div>
-        <a href="newEvent.html" class="button" id="addEvent">+</a>
+        <div class="fixed-action-btn">
+            <a href="newEvent.html" class="btn-floating btn-large red">
+              <i class="large material-icons">add</i>
+            </a>
+        </div>
     </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/materialize.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="js/database.js"></script>
     <script type="text/javascript" src="js/event.js"></script>

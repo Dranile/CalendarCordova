@@ -13,14 +13,18 @@
     "cordova-android": "^6.3.0",
     "cordova-browser": "^5.0.0",
     "cordova-plugin-app-event": "^1.2.1",
+    "cordova-plugin-background-mode": "^0.7.2",
     "cordova-plugin-camera": "^2.4.1",
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-console": "^1.1.0",
     "cordova-plugin-device": "^1.1.6",
     "cordova-plugin-geolocation": "^2.4.3",
     "cordova-plugin-local-notifications": "git+https://github.com/katzer/cordova-plugin-local-notifications.git",
+    "cordova-plugin-request-location-accuracy": "^2.2.2",
     "cordova-plugin-whitelist": "^1.3.2",
+    "cordova.plugins.diagnostic": "^3.7.2",
     "de.appplant.cordova.plugin.local-notification": "https://github.com/katzer/cordova-plugin-local-notifications",
+    "material-design-icons": "^3.0.1",
     "materialize-css": "^0.100.2"
   },
   "cordova": {
@@ -29,7 +33,10 @@
       "cordova-plugin-console": {},
       "cordova-plugin-geolocation": {},
       "cordova-plugin-camera": {},
-      "de.appplant.cordova.plugin.local-notification": {}
+      "de.appplant.cordova.plugin.local-notification": {},
+      "cordova-plugin-background-mode": {},
+      "cordova.plugins.diagnostic": {},
+      "cordova-plugin-request-location-accuracy": {}
     },
     "platforms": [
       "android",
