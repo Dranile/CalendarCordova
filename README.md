@@ -1,9 +1,10 @@
-#TP Cordova Hmin303
+# TP Cordova Hmin303
 
 ## Auteurs
 Carmona Anthony & Pyz Maxime
 
-## Installation
+## Installation
+
 ```bash
 cordova install
 cordova run android
@@ -20,6 +21,7 @@ cordova run android
  - Création d'un service background pour l'activité sportive pour mettre en veille le portable et continuer de faire avancer le chronomètre.
 
 ## Elements techniques
+
  - Utilisation d'un framework css pour l'affichage : materialize-css
  - Utilisation d'un plugin pour les notifications : https://github.com/katzer/cordova-plugin-local-notifications
  - Utilisation d'un plugin pour le service background : https://github.com/katzer/cordova-plugin-background-mode
